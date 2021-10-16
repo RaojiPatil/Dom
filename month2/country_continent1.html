@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <br>
+    <h1 id="display"></h1>
+    <div>
+
+
+        <button onclick="press('The continent is asia')">india</button>
+        <button onclick="press('The continent is America')">United States of America</button>
+        <button onclick="press('The continent is asia')">China</button>
+        <button onclick="press('The continent is a sia')">Nepal</button>
+        <button onclick="press('The continent is Australia')">Australia</button>
+        <button onclick="press('The continent is Europe')">France</button>
+        <button onclick="press('The continent is Europe')">Germany</button>
+        <button onclick="press('The continent is Africa')">South Africa</button>
+        <button onclick="press('The continent is Africa')">Nigeria</button>
+        <button onclick="press('The continent is South America.')">Mexico</button>
+        <button onclick="press('The continent is asia')">Argentina</button>
+        <button onclick="press('The continent is South America ')">Brazil</button>
+        <button onclick="press('The continent is North America')">Canada</button>
+        <button onclick="press('The continent is asia ')">Singapore</button>
+        <button onclick="press('The continent is Europe')">Sweden</button>
+
+    </div>
+
+    <div>
+        <button onclick="clearD()">clear</button>
+    </div>
+
+    <script>
+        var output = "";
+
+        function press(num) {
+            output = num;
+            document.getElementById("display").textContent = output;
+        }
+
+        function clearD() {
+            output = "";
+            document.getElementById("display").textContent = output;
+        }
+    </script>
+
+
+</body>
+
+</html>

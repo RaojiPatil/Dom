@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h2>body</h2>
+    </div>
+    <div>
+        <input type="text" id="names">
+        <button onclick="register()">submit</button>
+    </div>
+</body>
+
+</html>
+
+
+
+<script>
+    let queue = ["messi", "ronaldo", "utkarsh", "shinchan"];
+
+    function register() {
+        var name = document.getElementById("names").value;
+        queue.push(name);
+
+
+
+
+        let message = `${name} your reg succesfull!`;
+        alert(message);
+
+        let mypromies = new Promise(function(resolve, reject) {
+
+            let interval = setInterval(function() {
+                if (queue[0] === name) {
+                    resolve(`${name} its your turn now!`);
+
+                    clearInterval(interval);
+                }
+            }, 1000);
+
+
+        });
+
+
+        mypromies.then(function(res) {
+            alert(res);
+        })
+
+    }
+
+    function startvaccination() {
+        queue.shift();
+
+        if (queue.length == 0) {
+            clearInterval(interval)
+        }
+
+        console.log("queue", queue);
+
+    }
+    startvaccination(); // not need;
+
+    let interval = setInterval(startvaccination, 2000);
+
+
+    //
+</script>

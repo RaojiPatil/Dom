@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p>body</p>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script>
+    const shoe = {
+        brand: "Adidas",
+        size: 9,
+        year: 2021,
+    }
+
+    const shoe2 = {
+        brand: "Adidas",
+        size: 9,
+        year: 2021,
+    }
+
+
+    const sneakers = Object.create(shoe)
+
+
+    sneakers.price = "10001";
+    console.log("sneakers", sneakers);
+
+
+    //
+
+    const post = {
+        post: "raoji is the on eof the greate person",
+        like: "101",
+        user: "sanket",
+    }; // prototype
+
+
+    function comment(n, u) {
+        this.name = n;
+        this.user = u;
+    }
+
+    comment.prototype = post;
+
+    let c1 = new comment('nice pic dear:D', "sushat")
+    let c2 = new comment('today is touf:D', "ram")
+    let c3 = new comment('tommuro will more toufer: D', "raj")
+    console.log("c1", c1);
+    console.log("c2", c2);
+    console.log("c3", c3);
+
+
+
+    //
+
+    let arr = new MyArray("raju", "sham", "Babu bhiya");
+
+
+    function MyArray() {
+
+        Object.defineProperty(this, "length", {
+            value: 0,
+            writable: true,
+            enumerable: false,
+        });
+
+
+        this.length = arguments.length;
+        // console.log(arguments);
+
+        for (var i = 0; i < this.length; i++) {
+            this[i] = arguments[i];
+        }
+
+    }
+
+    MyArray.prototype.push = function(value) {
+
+        let index = this.length
+
+        this[index] = value;
+        this.length++;
+
+    };
+
+    arr.push("totla seth");
+    console.log(Object.values(arr))
+
+    //
+    MyArray.prototype.pop = function() {
+
+        let indextoRemove = this.length - 1;
+        delete this[indextoRemove];
+        this.length--;
+    };
+    arr.pop();
+    console.log(Object.values(arr));
+
+    //
+</script>

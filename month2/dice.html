@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <h1 id="heading">MASAI SCHOOL</h1>
+    <button id="a" onclick="ch1()">1</button>
+    <button id="b" onclick="ch2()">2</button>
+    <button id="c" onclick="ch3()">3</button>
+    <button id="e" onclick="ch4()">4</button>
+    <button id="f" onclick="ch5()">5</button>
+    <button id="g" onclick="ch6()">6</button>
+    <br>
+    <div>
+        <button onclick="clearD()">clear</button>
+    </div>
+
+    <script>
+        var h1s = "";
+
+        function ch1() {
+            var h1s = document.querySelectorAll("h1");
+            h1s[0].style.color = "red ";
+        }
+
+        function ch2() {
+            var h1s = document.querySelectorAll("h1");
+            h1s[0].style.color = "orange";
+        }
+
+        function ch3() {
+            var h1s = document.querySelectorAll("h1");
+            h1s[0].style.color = "darkblue";
+        }
+
+        function ch4() {
+            var h1s = document.querySelectorAll("h1");
+            h1s[0].style.color = "gold";
+        }
+
+        function ch5() {
+            var h1s = document.querySelectorAll("h1");
+            h1s[0].style.color = "aqua";
+        }
+
+        function ch6() {
+            var h1s = document.querySelectorAll("h1");
+            h1s[0].style.color = "green ";
+        }
+        var output = "";
+
+        function clearD() {
+            var h1s = "";
+            document.getElementById("display").textContent = h1s;
+        }
+    </script>
+
+</body>
+
+</html>

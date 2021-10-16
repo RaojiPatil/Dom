@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arr = new MyArray("raoji", "sanket", "aniket", "sanjay");
+
+
+    function MyArray() {
+
+        Object.defineProperty(this, "length", {
+            value: 0,
+            writable: true,
+            enumerable: false,
+        });
+
+        this.length = arguments.length;
+
+        for (var i = 0; i < this.length; i++) {
+            this[i] = arguments[i];
+        }
+
+    }
+
+    MyArray.prototype.push = function(value) {
+
+        let index = this.length
+        this[index] = value;
+        this.length++;
+
+    };
+
+    arr.push("Nanasaheb");
+    console.log(Object.values(arr))
+
+
+    function MyArray() {
+
+        Object.defineProperty(this, "length", {
+            value: 0,
+            writable: true,
+            enumerable: false,
+        });
+
+        this.length = arguments.length;
+
+        for (var i = 0; i < this.length; i++) {
+            this[i] = arguments[i];
+        }
+
+    }
+
+
+    var out = "";
+    MyArray.prototype.reverse = function() {
+
+        for (var i = arr.length - 1; i >= 0; i--) {
+            out = out + arr[i] + " ";
+
+        }
+    };
+    arr.reverse();
+    console.log(Object.values(out.split(" ")));
+    // var out = "";
+    // for (var i = arr.length - 1; i >= 0; i--) {
+    //     out = out + arr[i] + " ";
+    // }
+    // console.log(Object.values(out.split(" ")));
+</script>
+
+</html>

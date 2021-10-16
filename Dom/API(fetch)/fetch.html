@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    #products {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        margin: 5%;
+        grid-gap: 20px;
+    }
+    
+    img {
+        width: 50%;
+        height: 150px;
+    }
+</style>
+
+<body>
+    <div id="products"></div>
+</body>
+<script>
+    fetch('https://fakestoreapi.com/products')
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(res) {
+            // console.log(res);
+            showProduct(res);
+
+        });
+
+    var container = document.getElementById("products");
+
+    function showProduct(products) {
+
+        products.forEach(function(product) {
+
+            let div = document.createElement('div')
+
+            let img = document.createElement('img')
+            img.src = product.image
+
+            let name = document.createElement('p')
+            name.innerText = product.title
+
+            let price = document.createElement('p')
+            price.innerText = product.price
+
+            div.append(img, name, price);
+            container.append(div);
+        })
+    }
+</script>
+
+
+</html>

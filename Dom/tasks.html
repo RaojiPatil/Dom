@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+
+<body>
+    <form onsubmit="showTask(event)">
+        <div>
+            <label for="">Task to do :</label>
+            <input type="text" id="inputTask">
+        </div>
+
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="cont">
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    function addTasks(t) {
+        this.activity = t
+        this.date = new Date().getDate()
+    }
+
+
+
+    function showTask(e) {
+
+        e.preventDefault()
+
+        let task = document.getElementById('inputTask').value
+
+        let t1 = new addTasks(task)
+        let output = t1.activity + ' ' + t1.date
+
+        console.log(t1)
+
+        let parent = document.getElementById('cont')
+        let li = document.createElement('li')
+        li.innerText = output
+
+        parent.append(li)
+
+
+        document.getElementById('inputTask').value = ""
+    }
+</script>

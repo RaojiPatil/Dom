@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>fetch</h1>
+    <input type="text" id="city" placeholder="enter the city">
+    <button onclick="getWeather()">Get weather</button>
+    <div id="data"></div>
+
+</body>
+
+</html>
+
+<!-- <script>
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=pune&appid=599659770ac8f3cf3f59f16bfb3bc4cd')
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(res) {
+            console.log(res);
+        });
+</script> -->
+
+<script>
+    let container = document.getElementById("data");
+
+    async function getWeather() {
+
+        let city = document.getElementById("city").value
+
+        let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=599659770ac8f3cf3f59f16bfb3bc4cd`)
+
+        let data = await res.json();
+        console.log(data);
+        showWether(data);
+    }
+
+
+    function showWether(weather) {
+        container.innerText = null;
+        let name = document.createElement("p");
+        name.innerText = weather.name;
+
+        let temp = document.createElement("p");
+        temp.innerText = Math.round(weather.main.temp - 273) + "c";
+
+        container.append(name, temp);
+    }
+</script>

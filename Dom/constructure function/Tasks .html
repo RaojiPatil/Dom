@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #a {
+        margin-top: 10px;
+    }
+    
+    #submit {
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+
+    <div>
+        <input type="text" id="a">
+
+    </div>
+    <form onclick="addtask(event)" id="form">
+        <button id="submit">submit</button>
+
+    </form>
+    <div id="cont">
+
+    </div>
+</body>
+
+
+</html>
+
+<script>
+    function taskFunction(n) {
+        (this.nameoftask = "student have finaly move to next unit"),
+        (this.date = new Date().getDate()),
+        (this.states = n)
+    }
+
+    function addtask(e) {
+        e.preventDefault()
+
+        let task = document.getElementById("a").value
+
+        let data = new taskFunction(task)
+        let output = data.nameoftask + " " + data.states + " " + data.date
+
+        console.log(data)
+
+        let parent = document.getElementById('cont')
+        let li = document.createElement('li')
+        li.innerText = output
+
+        parent.append(li)
+
+
+        document.getElementById('a').value = ""
+
+    }
+</script>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #products {
+            margin: 5% 5% 10% 5%;
+            height: 600px;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20%;
+            justify-content: center;
+            grid-gap: 5%;
+        }
+        
+        img {
+            width: 99%;
+            border-radius: 5px;
+        }
+        
+        #a {
+            text-align: center;
+            color: crimson;
+            font-size: 35px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        #b {
+            text-align: center;
+            width: 120px;
+            height: auto;
+            color: white;
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 id="a">Holiday Store</h1>
+    <a href="cart2.html"><button id="b">Go to Cart</button> </a>
+    <div id="products"></div>
+
+
+</body>
+
+
+
+<script>
+    let data = [{
+        name: "Rome",
+        price: "20,0000",
+        img: "https://www.planetware.com/wpimages/2020/08/top-attractions-in-the-world-italy-rome-colosseum.jpg",
+    }, {
+        name: "France",
+        price: "13,4700",
+        img: "https://i0.wp.com/tripadvisor.wpengine.com/wp-content/uploads/2018/12/eiffel-tower-worlds-most-popular-attraction.jpeg?quality=90&w=627",
+    }, {
+        name: "India",
+        price: "99,999",
+        img: "https://www.planetware.com/photos-large/IND/india-top-attractions-taj-mahal.jpg",
+    }, {
+        name: "Rome",
+        price: "20,0000",
+        img: "https://i0.wp.com/tripadvisor.wpengine.com/wp-content/uploads/2018/12/top-attraction-rome-colosseum.jpg?quality=90&w=627",
+    }, {
+        name: "itely",
+        price: "13,4700",
+        img: "https://www.usnews.com/dims4/USNEWS/22c54a0/2147483647/thumbnail/640x420/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2F93%2F08%2F63d7674d439ca41b4d9a312f0e9f%2F2-giza-getty.jpg",
+    }, {
+        name: "india",
+        price: "99,990",
+        img: "https://i0.wp.com/tripadvisor.wpengine.com/wp-content/uploads/2018/12/vatican-world-best-attraction.jpeg?quality=90&w=627",
+    }, {
+        name: "Rome",
+        price: "20,0000",
+        img: "https://validdocuments.com/wp-content/uploads/2019/10/Colosseum-Rome.jpg",
+    }, {
+        name: "America",
+        price: "13,4700",
+        img: "https://i.insider.com/5d3776e836e03c01ae25c453?width=1000&format=jpeg&auto=webp",
+    }, ];
+
+
+    let parent = document.getElementById('products');
+
+    function showproduct(product) {
+        data.forEach(function(product) {
+
+            let div = document.createElement("div");
+
+            let img = document.createElement("img");
+            img.src = product.img;
+
+            let product_price = document.createElement("p");
+            product_price.textContent = product.price;
+
+            let product_name = document.createElement("p");
+
+            product_name.textContent = product.name;
+
+            let addtocart_btn = document.createElement("button");
+            addtocart_btn.innerText = "Add to Cart";
+
+            addtocart_btn.onclick = function() {
+                addtocart(product);
+            };
+
+
+            div.append(img, product_name, product_price, addtocart_btn);
+            parent.append(div);
+        });
+    }
+    showproduct();
+
+    if (localStorage.getItem("cart") === null) {
+        localStorage.setItem("cart", JSON.stringify([]));
+    }
+
+    function addtocart(p) {
+        let products_cart = JSON.parse(localStorage.getItem("cart"));
+
+        products_cart.push(p);
+
+        localStorage.setItem("cart", JSON.stringify(products_cart));
+
+        console.log("product_cart:", products_cart);
+    }
+
+
+    //
+</script>
+
+</html>

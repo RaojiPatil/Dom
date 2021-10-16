@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    //
+    const family = {
+        A_greandfather: "Nanasaheb_ Patil",
+        father: "sanjay_ patil",
+        myname: "raoji_ patil",
+    }; // prototype
+
+
+    function add(name, surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    add.prototype = family;
+
+    let grandfather = new add('Nanasaheb', "patil")
+    console.log("grandfather", grandfather);
+
+    //
+
+
+    let arr = new MyArray("Nanasaheb", "sanjay");
+
+
+    function MyArray() {
+
+        Object.defineProperty(this, "length", {
+            value: 0,
+            writable: true,
+            enumerable: false,
+        });
+
+
+        this.length = arguments.length;
+        // console.log(arguments);
+
+        for (var i = 0; i < this.length; i++) {
+            this[i] = arguments[i];
+        }
+
+    }
+
+    MyArray.prototype.push = function(value) {
+
+        let index = this.length
+
+        this[index] = value;
+        this.length++;
+
+    };
+
+    arr.push("raoji");
+    console.log(Object.values(arr))
+</script>
+
+</html>
