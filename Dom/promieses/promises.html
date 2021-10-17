@@ -23,7 +23,7 @@
 
 
 <script>
-    let queue = ["messi", "ronaldo", "utkarsh", "shinchan"];
+    let queue = ["messi", "ronaldo", "utkarsh", "shinchan", "raoji", "sanket", "patil"];
 
     function register() {
         var name = document.getElementById("names").value;
@@ -44,6 +44,13 @@
                     clearInterval(interval);
                 }
             }, 1000);
+
+            let interval1 = setInterval(function() {
+                if (queue[0] === name) {
+                    alert(`vaccine out of stock, visit tomorrow!`)
+                    clearInterval(interval1);
+                }
+            }, 5000);
 
 
         });
