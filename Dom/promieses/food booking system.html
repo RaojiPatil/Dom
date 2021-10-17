@@ -10,9 +10,53 @@
 
 <body>
 
+    <input type="text" id="name">
+    <button onclick="register()">register</button>
+    <div id="div">
+
+    </div>
+
 </body>
 
 </html>
 
 <script>
+    let queue = ["dosa ", "rice", "chicken", "roti", "veg", "dal"];
+
+    function register() {
+        let name = document.getElementById("name").value;
+
+        queue.push(name);
+        let msg = `${name} Booking is successfull`;
+        alert(msg);
+
+        let mypromise = new Promise(function(resolve, reject) {
+
+            let interval = setInterval(function() {
+                if (queue[0] === name) {
+                    resolve(`${name} is ready!`);
+                    clearInterval(interval);
+                }
+
+            }, 1000);
+
+        });
+        mypromise.then(function(res) {
+            alert(res);
+        })
+    }
+
+    function startvaccination() {
+        queue.shift();
+
+        if (queue.length === 0) {
+
+            clearInterval(interval)
+        }
+        console.log(queue);
+
+    }
+    startvaccination();
+
+    let interval = setInterval(startvaccination, 2000);
 </script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body id="body">
+    <h3 id="a">Ticket Booking</h3>
+    <div>
+        <form onsubmit="booking(event)" id="myform" action="">
+
+            <input type="text" id="name" placeholder="Name" /><br><br>
+            <input type="text" id="email" placeholder="Email" /><br><br>
+
+            <input type="number" id="mobile" placeholder="mobile" /><br><br>
+
+            <input type="text" id="Address" placeholder="Address" /><br><br>
+            <input type="submit" id="b" /><br>
+
+        </form>
+    </div>
+</body>
+
+
+
+<script>
+    function booking(e) {
+        e.preventDefault();
+
+        let myform = document.getElementById("myform");
+
+        let name = myform.name.value;
+        let email = myform.email.value;
+        let mobile = myform.mobile.value;
+
+        if (localStorage.getItem("users") === null) {
+            localStorage.setItem("users", JSON.stringify([]));
+        }
+
+
+        let user = {
+            name,
+            email,
+            mobile,
+        };
+
+
+
+        let arr = JSON.parse(localStorage.getItem("users"));
+        arr.push(user);
+        localStorage.setItem("users", JSON.stringify(arr));
+
+
+    }
+</script>
+
+</html>

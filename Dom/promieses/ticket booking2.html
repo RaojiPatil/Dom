@@ -13,6 +13,8 @@
         <h1>train ticket booking</h1>
     </div>
     <button onclick="checkAvalibality()">check Avalibality</button>
+
+    <a href="ticket Booking form.html"><button>Book your ticket</button></a>
 </body>
 
 </html>
@@ -33,12 +35,17 @@
 
                 if (BtoG.length === 4) {
                     resolve('BtoG is available');
+                    alert('BtoG is available')
                     clearInterval(interval);
                 } else if (MtoG.length === 4) {
                     resolve("MtoG is available");
+                    alert('MtoG is available')
+                    clearInterval(interval);
 
                 } else if (PtoG.length === 4) {
                     resolve("PtoG is available");
+                    alert('PtoG is available')
+                    clearInterval(interval);
                 }
 
             }, 1000)
