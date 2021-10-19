@@ -20,6 +20,6 @@
 
 
 <script type="module">
-    import navbar from "./components/navbar.js"; import {getData, append} from "./script/showData.js"; let navbar_div = document.getElementById("navbar"); navbar_div.innerHTML = navbar(); let response = getData(`https://fakestoreapi.com/products/category/electronics`)
+    import navbar from "./components/navbar.js"; import {getData, append} from "./script/showData.js"; let navbar_div = document.getElementById("navbar"); navbar_div.innerHTML = navbar(); let response = getData(`https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata`)
     response.then((res) => { let container = document.getElementById("container"); append(res, container); }) .catch((err) => { console.log(err) })
 </script>
