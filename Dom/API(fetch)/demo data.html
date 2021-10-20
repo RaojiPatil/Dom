@@ -21,9 +21,10 @@
 
 
 <script>
+    //https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
     async function searchmovies() {
         let moviename = document.getElementById("Title").value
-        let res = await fetch(`https://www.omdbapi.com/?apikey=f081a309&s=${moviename}`)
+        let res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata`)
         let data = await res.json();
         console.log(data);
     }

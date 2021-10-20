@@ -8,11 +8,15 @@ async function getData(url) {
 
 function append(data, container) {
 
-    data.forEach(({}) => {
+    data.forEach(({
+        meals: {
+            strArea
+        }
+    }) => {
         let div = document.createElement("div")
         let p = document.createElement("p")
 
-        p.innerText = meals.strMeal
+        p.innerText = strArea
 
         // let img = document.createElement("img")
 
