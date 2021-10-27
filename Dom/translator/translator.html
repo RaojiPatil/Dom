@@ -1,72 +1,165 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0    
-Transitional//EN">
-<HTML xmlns:o>
+<!DOCTYPE html>
+<html lang="en">
 
-<HEAD>
-    <TITLE>
-        language transliteration
-    </TITLE>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-        google.load("elements",
-            "1", {
-                packages: "transliteration"
-            });
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        background-image: url("https://images.pexels.com/photos/1151282/pexels-photo-1151282.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+    }
+    
+    #head1 {
+        text-align: center;
+    }
+    
+    #write {
+        display: inline-block;
+        border: 1px solid black;
+        width: 320px;
+        height: 250px;
+    }
+    
+    #translate {
+        display: inline-block;
+        border: 1px solid black;
+        width: 320px;
+        height: 250px;
+    }
+    
+    #trans {
+        display: inline-block;
+        gap: 2px;
+    }
+    
+    #buttons {
+        margin-top: 10px;
+    }
+    
+    #Langs {
+        width: 120px;
+        height: 30px;
+    }
+    
+    #translate_button {
+        width: 100px;
+        height: 30px;
+    }
+</style>
 
-        function onLoad() {
-            var options = {
-                sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
-                destinationLanguage: google.elements.transliteration.LanguageCode.KANNADA,
-                shortcutKey: 'ctrl+g',
-                transliterationEnabled: true
-            };
-            var control = new google.elements.transliteration.TransliterationControl(options);
-            control.makeTransliteratable(['transliterateTextarea']);
-        }
-        google.setOnLoadCallback(onLoad);
-    </script>
-</HEAD>
+<body>
 
-<BODY>
-    <div class="base" align="center">
-        <TABLE class="standard" width="1200">
-            <TBODY>
-                <TR>
-                    <TD class="mainPanel">
-                        <TABLE>
-                            <TBODY>
-                                <TR>
-                                    <TD vAlign="top" width="800">
-                                        <TABLE cellPadding="5">
-                                            <TBODY>
-                                                <TR>
-                                                    <TD>
-                                                        <form name="convarea" action="" ID="Form1">
-                                                            <table ID="Table2">
-                                                                <tr>
-                                                                    <td align="center">
-                                                                        <textarea id="transliterateTextarea" style="width: 550px; height: 220px" name="DraftxData"></textarea>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="color:Gray">
-                                                                        (Press Ctrl+g to toggle between English and kannada)
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </form>
+    <div id="head1">
+        <h1>Please select a Lang <select name="lang" id="Langs" onchange="getTheValu()">
+            <option value="en">English</option>
+            <option value="ar">Arabic</option>
+            <option value="zh">Chinese</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="hi">Hindi</option>
+            <option value="id">Indonesian</option>
+            <option value="ga">Irish</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="pl">Polish</option>
+            <option value="pt">Portuguese</option>
+            <option value="ru">Russian</option>
+            <option value="es">Spanish</option>
+            <option value="tr">Turkish</option>
+            <option value="vi">Vietnamese</option>
+        </select></h1>
+        <div>
+            <textarea id="write" rows="10" cols="50" spellcheck="false" placeholder="Enter Text"></textarea>
+            <textarea id="translate" rows="10" cols="50" spellcheck="false" placeholder="translate"></textarea>
+        </div>
+
+        <div id="buttons">
+            <button onclick="getthevalu()" id="translate_button">translate</button>
+        </div>
     </div>
-</BODY>
 
-</HTML>
+</body>
+
+</html>
 
 <script>
-    function onLoad() {
-        var options = {
-            sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
-            destinationLanguage: google.elements.transliteration.LanguageCode.HINDI,
-            shortcutKey: 'ctrl+g',
-            transliterationEnabled: true
-        };
+    async function getlangs() {
+        let res = await fetch(`https://libretranslate.de/languages`);
+        let data = await res.json();
+        appenddata(data);
+    }
+    getlangs();
+
+    function appenddata(d) {
+        let maindiv = document.getElementById(`Langs`);
+        d.forEach((el) => {
+            let opt = document.createElement(`option`);
+            opt.value = el.code;
+            opt.textContent = el.name;
+            maindiv.append(opt);
+        });
+    }
+
+    function getTheValu() {
+        let val = document.getElementById(`Langs`).value;
+        localStorage.setItem(`lang`, JSON.stringify(val));
+        return val;
+    }
+
+    async function detectLang() {
+        const res = await fetch("https://libretranslate.de/detect", {
+            method: "POST",
+            body: JSON.stringify({
+                q: "hola",
+                source: "en",
+                target: "es",
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+
+        console.log(await res.json());
+    }
+    //detectLang();
+
+    function getInput() {
+        let log = document.getElementById("write");
+        return log.value;
+    }
+    let userinput = getInput();
+
+    async function translate() {
+        const res = await fetch("https://libretranslate.de/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q: getInput(),
+                source: "en",
+                target: getTheValu(),
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+
+        let data = await res.json();
+        let {
+            translatedText
+        } = data;
+        appendres(translatedText);
+    }
+
+    function getthevalu() {
+        let log = document.getElementById("write");
+        translate();
+    }
+
+    function appendres(data) {
+        let trgt = document.getElementById(`translate`);
+        trgt.value = data;
     }
 </script>
