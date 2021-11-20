@@ -7,47 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-    #navbar {
-        display: flex;
-        justify-content: space-between;
-        border: solid 1px black;
-        background-color: rgb(201, 201, 201);
-        height: 85px;
-        width: 100%;
-    }
-    
-    #options {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    #options h3 {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    
-    #main {
-        margin-left: 20px;
-    }
-</style>
 
 <body>
+    <script>
+        function ac(n, p, t) {
 
+            var product = {}
+            product.name = n,
+                product.price = p,
+                product.type = t
+
+        }
+
+        function nikeproduct(n, p, t) {
+            (this.name = n),
+            (this.price = p),
+            (this.type = t)
+        }
+        var newproduct = new nikeproduct("nike", 100, "sport");
+        console.log(newproduct);
+    </script>
 </body>
-<div id="navbar">
-
-    <h3 id="main"><a href="">home</a></h3>
-    <div id="options">
-
-        <h3><a href="">Signin</a></h3>
-        <h3><a href="">Signup</a></h3>
-
-    </div>
-
-</div>
-</div>
-
-
 
 </html>

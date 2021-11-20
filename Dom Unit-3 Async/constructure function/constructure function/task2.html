@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form>div {
+            margin: 15px;
+        }
+        
+        td {
+            border: 1px solid rgb(209, 33, 33);
+            min-height: 100px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div>
+            <input type="text" name="" id="name" placeholder="Name"><br>
+
+        </div>
+
+        <div>
+            <label>Priority</label>
+            <select id="priority">
+         <option value="">Choose</option>
+         <option value="True">True</option>
+         <option value="false">False</option>
+      
+        </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <button>Delete All</button>
+    <div id="person"> </div>
+
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Priority</td>
+            <td>date</td>
+            <td>Done</td>
+            <td>Remove</td>
+        </tr>
+    </table>
+
+
+    <script>
+        function Biodata(n, p) {
+            this.name = n,
+                this.priority = p,
+                this.date = new Date()
+
+
+        }
+        let parent = document.getElementById("person")
+
+
+        var fm = document.querySelector("form");
+        var tb = document.querySelector("table");
+        fm.addEventListener("submit", addItem);
+        var btn = document.querySelector("button");
+        btn.addEventListener("click", deleteAll);
+
+        function deleteAll() {
+            var items = tb.querySelectorAll("tr");
+            for (var i = 1; i < items.length; i++) {
+                items[i].remove();
+            }
+        }
+
+
+        function addItem(event) {
+
+            event.preventDefault()
+
+
+            let Name = document.getElementById("name").value
+            let states = document.getElementById("priority").value
+
+            let data = new Biodata(Name, states)
+
+            let output = data.name + " " + data.priority + " " + data.date;
+            console.log(data);
+
+
+            let li = document.createElement("li")
+            li.innerText = output;
+            parent.append(li);
+
+            createRow(data)
+
+            document.getElementById('name').value = ""
+            document.getElementById('priority').value = ""
+        }
+
+        function createRow(data) {
+            var row = document.createElement("tr");
+            var td1 = document.createElement("td");
+            td1.textContent = name;
+
+
+            var td3 = document.createElement("td");
+            td2.textContent = states;
+
+            if (states == "True") {
+                td3.style.color = "red";
+            }
+
+            var td4 = document.createElement("td");
+            td4.textContent = "Done";
+            td4.addEventListener("click", markComplete);
+
+            var td5 = document.createElement("td");
+            td5.textContent = "Delete";
+            td5.addEventListener("click", makeDelete);
+            row.append(td1, td2, td3, td4, td5);
+
+            parent.append(row);
+        }
+    </script>
+</body>
+
+</html>

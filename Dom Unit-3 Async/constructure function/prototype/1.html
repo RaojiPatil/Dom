@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // const cat = {
+        //     type: "sneaker",
+        //     color: "white",
+        //     material: "leadther",
+        //     brand: "nike"
+        // }
+
+        // const lion = Object.create(cat);
+        // lion.spped = 65;
+        // console.log(lion)
+
+
+        // function Newspaper(h) {
+        //     this.date = new Date();
+        //     this.heading = h;
+        //     this.publisher = "pablo papers"
+
+        // }
+
+
+        // Newspaper.prototype.advertisement = function() {
+        //     console.log("click this link to win iphone20");
+        // };
+
+        // for (var i = 0; i < 3; i++) {
+        //     var n1 = new Newspaper("farm laws revoked");
+        //     console.log(n1);
+        //     n1.advertisement();
+        // }
+
+
+
+        // function product(p) {
+        //     this.name = n;
+        //     this.type = "shoes";
+        // }
+
+        // product.prototype.coupen = function(c) {
+        //     if (c === "masai30") {
+
+        //     }
+        // }
+
+
+        var obj = {
+            name: "bike",
+            type: "sport"
+        }
+        var obj2 = Object.create(obj);
+        console.log("obj", obj2.name);
+
+
+
+        function person(n, a) {
+            this.name = n,
+                this.age = a
+
+        }
+
+
+        var person2 = new person("sanket", 25);
+        console.log(person2);
+
+
+        var cat = {
+            age: 21,
+            place: "latur"
+        }
+
+        var lion = Object.create(cat);
+        lion.college = "MIT";
+        console.log(lion);
+    </script>
+</body>
+
+</html>
