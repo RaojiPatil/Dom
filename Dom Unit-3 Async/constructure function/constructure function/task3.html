@@ -51,20 +51,20 @@
 </html>
 <script>
     document.getElementById("addtask").addEventListener("click", handleclick);
-    // create onclick function
+
     var tasks = [];
 
     function handleclick() {
-        var name = document.getElementById("name").value; // get value from input box
+        var name = document.getElementById("name").value;
         var todo = new Task(name)
         console.log(todo);
         tasks.push(todo);
-        createtodo()
+        createtodo() //todo.name, todo.date
 
         var name = document.getElementById("name").value = ""
     }
 
-    function Task(name) { //create constructure function
+    function Task(name) {
         this.name = name;
         this.date = new Date();
         this.status = false;
@@ -72,7 +72,7 @@
 
 
 
-    function createtodo() { // create todo list function
+    function createtodo() {
 
         var div = document.getElementById("person");
         div.innerHTML = null;
@@ -82,12 +82,23 @@
             div.id = "datacontainer";
             var h4 = document.createElement("h4");
             var p = document.createElement("p");
+            var Done = document.createElement("button");
+            var remove = document.createElement("button");
 
+            Done.addEventListener("click", function() {
+                toggleTask(item);
+                changecolor(h4, item.status);
+            });
+
+            remove.addEventListener("click", function() {
+                removetodo(item);
+            });
             h4.innerText = item.name;
             p.innerText = item.date;
-
+            Done.textContent = "Done";
+            remove.textContent = "Delete";
             var data = document.getElementById("person");
-            div.append(h4, p);
+            div.append(h4, p, Done, remove);
             data.append(div);
         })
     }
@@ -96,5 +107,21 @@
     function toggleTask(task) {
         task.status = !task.status;
         console.log(task);
+    }
+
+    function changecolor(tag, status) {
+        if (status) {
+            tag.style.color = "green";
+        } else {
+            tag.style.color = "blue";
+        }
+    }
+
+
+    function removetodo(task) {
+        tasks = tasks.filter(function(item) {
+            return item.name != task.name;
+        });
+        createtodo();
     }
 </script>

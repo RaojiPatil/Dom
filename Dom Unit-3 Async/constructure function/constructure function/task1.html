@@ -46,32 +46,32 @@
 
 
     <script>
-        function Biodata(n) {
-            this.name = n,
-                this.date = new Date()
+        function Biodata(n) { // create constructure function 
+            this.name = n, // pass the name value
+                this.date = new Date() // and date
 
         }
 
 
-        let parent = document.getElementById("person")
+        let parent = document.getElementById("person") // create parent and get id
 
         function persondata(e) {
 
             e.preventDefault()
 
-            let Name = document.getElementById("name").value
+            let Name = document.getElementById("name").value // get data from input box
 
 
-            let data = new Biodata(Name)
+            let data = new Biodata(Name) // define constructure function
 
             let output = data.name + " " + data.date;
             console.log(data);
 
 
 
-            let li = document.createElement("li")
+            let li = document.createElement("li") //create list function
             li.innerText = output;
-            parent.append(li);
+            parent.append(li); // append list in parent 
 
 
             document.getElementById('name').value = ""
