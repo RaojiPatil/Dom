@@ -121,7 +121,7 @@
 
 </body>
 
-<script type="module">
+<script>
 
     import search from './components/search.js'; import {getData,append} from './script/showdata.js'; import {getcatData,appendcat} from './script/cat.js'; let searchbr = document.getElementById("searchbar"); searchbr.innerHTML = search(); let sbtn = document.getElementById("searchbtn");
     sbtn.onclick = function() { result() }; function empty() { let cont = document.getElementById("container"); cont.innerText = null; let cat = document.getElementById("cat"); cat.innerText = null }; async function result() { empty(); var searchinput

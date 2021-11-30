@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  
+  body{
+        width: 90%;
+        height: 90%;
+        margin: auto;
+        margin-top: 20px;
+        box-shadow:rgb(38, 57, 77) 0px 20px 30px -10px;
+        padding: 10px;
+    }
+
+
+    button {
+        color: black;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 15px;
+        background-color: white;
+        border-radius: 3px;
+        padding: 10px;
+        width: 15%;
+        margin-left: 500px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    button:hover{
+        background-color: blue;
+        color: white;
+    }
+    
+    #cont {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 16px;
+        grid-template-columns: 25% 25% 25% 25%;
+        color: white;
+        background-color: rgb(253, 218, 143);
+    }
+    
+    img {
+        width: 100%;
+        height: 60%;
+        border-radius: 5%;
+    }
+    
+    #cont>div:hover {
+        background-color: rgb(118, 97, 240);
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+    
+    #cont>div {
+        background-color: rgb(93, 47, 201);
+        margin: 5% 5%;
+        padding: 5% 5%;
+        border-radius: 10px;
+    }
+    
+    h1{
+        text-align: center;
+    }
+
+    input{
+        padding: 10px;
+        width: 30%;
+        margin-left: 400px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<body>
+    <h1>Top Trending News Are Here</h1>
+    <input oninput="searchnews()" type="text" id="input">
+    <div id="cont"></div>
+
+</body>
+
+</html>
+
+
+
+
+<script>
+    //b7ad90d335884fe49e98ff2ae32ebcec
+
+    async function searchnews() {
+
+        let news = document.getElementById("input").value
+        let res = await fetch(`https://newsapi.org/v2/everything?q=${news}&from=2021-09-18&sortBy=publishedAt&apiKey=c9c2d220eeda4a21b3f724c6eaf4cb32`)
+        let data = await res.json();
+        console.log(data);
+        shownews(data.articles);
+        console.log(data.Search);
+
+    }
+    
+    searchnews();
+
+
+    var container = document.getElementById("cont");
+
+    function shownews(news) {
+        container.innerHTML = null
+        news.forEach(function(news) {
+
+            let div = document.createElement('div')
+
+            let img = document.createElement('img')
+            img.src = news.urlToImage
+
+            let author = document.createElement('p')
+            author.innerText = "Post Aurthor:" + news.author
+
+            let Title = document.createElement('p')
+            Title.innerText = "Title:- " + news.title
+
+            let content = document.createElement('p')
+            content.innerText = news.description
+
+
+            let date = document.createElement('p')
+            date.innerText = news.publishedAt
+
+
+            div.append(img, author, Title);
+            container.append(div);
+        })
+    }
+</script>

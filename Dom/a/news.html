@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="script.js">
+<style>
+    #cont {
+        max-width: 1260px;
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        grid-gap: 10px;
+        margin: 2%;
+    }
+    
+    #cont>div {
+        gap: 5px;
+        border: 1px solid rgb(207, 200, 200);
+    }
+    
+    div>img {
+        margin: 5px;
+        width: 250px;
+        height: 220px;
+    }
+    
+    #a {
+        margin-left: 25px;
+        margin-top: 10px;
+    }
+    
+    h1 {
+        font-size: 23px;
+        color: darkgreen;
+    }
+    
+    h2 {
+        font-size: 22px;
+        font-weight: 400;
+        color: black;
+    }
+</style>
+
+<body>
+
+    <div id="a">
+        <input type="text" id="input">
+        <button onclick="searchnews()">Search</button>
+    </div>
+
+
+
+
+    <div id="cont"> </div>
+
+</body>
+
+</html>
+
+
+<script>
+    // 01b9823fe2a148839883c14273f20ad8
+    //b7ad90d335884fe49e98ff2ae32ebcec
+    //7f173ec2270d47188a56eb8199fed814
+
+    //https://newsapi.org/v2/everything?q=tesla&from=2021-10-28&sortBy=publishedAt&apiKey=7f173ec2270d47188a56eb8199fed814
+ 
+ 
+ 
+    async function searchnews() {
+        let new1 = document.getElementById("input").value
+        let res = await fetch(`http://newsapi.org/v2/everything?q=${new1}&from=2021-09-18&sortBy=publishedAt&apiKey=7f173ec2270d47188a56eb8199fed814&maxResults=20`)
+        let data = await res.json()
+        shownews(data.articles)
+        console.log(data)
+
+    }
+    searchnews();
+
+
+
+    var container = document.getElementById("cont");
+
+    function shownews(news) {
+        container.innerHTML = null;
+        news.forEach(function(news) {
+
+            let div = document.createElement('div')
+
+            let img = document.createElement('img')
+            img.src = news.urlToImage
+
+            let author = document.createElement('h1')
+            author.innerText = news.author
+
+            let Title = document.createElement('h2')
+            Title.innerText = news.title
+
+            let content = document.createElement('p')
+            content.innerText = news.description
+
+
+            let date = document.createElement('p')
+            date.innerText = news.publishedAt
+
+
+            div.append(author, Title, date, content, img);
+            container.append(div);
+        })
+    }
+</script>
