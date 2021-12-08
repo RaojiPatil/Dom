@@ -20,6 +20,8 @@ function navbar() {
           <li>Issues</li>
           <li>Marketplace</li>
           <li><a href="explore.html"> Explore</a></li>
+          <li><a href="signup.html">signup/Login</a></li>
+         
         </ul>
       </div>
 
