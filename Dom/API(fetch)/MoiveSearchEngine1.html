@@ -56,6 +56,7 @@
 </html>
 
 <script>
+    
     async function getMoive() {
         let moviename = document.getElementById('name').value
         let res = await fetch(`https://www.omdbapi.com/?apikey=568a40b1&s=${moviename}`)
